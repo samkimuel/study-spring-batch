@@ -5,6 +5,7 @@
 - [조졸두님의 Spring Batch 가이드 3](https://jojoldu.tistory.com/326)
 - [조졸두님의 Spring Batch 가이드 4](https://jojoldu.tistory.com/328)
 - [조졸두님의 Spring Batch 가이드 5](https://jojoldu.tistory.com/330)
+- [조졸두님의 Spring Batch 가이드 6](https://jojoldu.tistory.com/331)
 
 ## 기록
 
@@ -20,3 +21,14 @@
 - 장점
   - JobParameter의 Late Binding이 가능함
   - 동일한 컴포넌트를 병렬 혹은 동시에 사용할 때 유용함
+
+#### Chunk
+- 데이터 덩어리로 작업할 때 각 커밋 사이에 처리되는 row 수
+- 한 번에 하나씩 데이터를 읽어 Chunk라는 덩어리를 만든 뒤, Chunk 단위로 트랜잭션을 다룸
+- Reader, Processor에서는 1건씩, Writer에선 Chunk 단위로 처리됨
+- Page Size vs Chunk Size
+  - Chunk Size : 한 번에 처리될 트랜잭션 단위
+  - Page Size : 한 번에 조회할 Item의 양
+    - 페이징 쿼리에서 Page의 Size를 지정하기 위한 값
+  - 성능 상 이슈 외에도 2개 값을 다르게 할 경우 JPA를 사용할 경우 영속성 컨텍스트가 깨지는 문제가 발생
+  - **2개 값을 일치시키는 것이 보편적으로 좋은 방법!**
