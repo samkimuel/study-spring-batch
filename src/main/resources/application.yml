@@ -6,6 +6,8 @@ spring:
     job:
       names: ${job.name:NONE}
 
+logging.level.org.springframework.batch: DEBUG
+
 ---
 
 spring:
@@ -27,3 +29,4 @@ spring:
       jdbc-url: jdbc:mysql://localhost:3306/spring_batch
       username: mhk
       password: mhk1234
+
